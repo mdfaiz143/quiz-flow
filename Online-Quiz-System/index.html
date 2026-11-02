@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101828">
+  <title>QuizFlow — Online Assessment Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="QuizFlow home">
+        <span class="brand-mark">Q</span><span>quiz<span class="brand-light">flow</span></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-links" aria-label="Main navigation">
+        <button class="nav-link active" data-view="dashboard"><span class="nav-icon">▦</span> Dashboard</button>
+        <button class="nav-link" data-view="quizzes"><span class="nav-icon">▤</span> Explore quizzes</button>
+        <button class="nav-link" data-view="results"><span class="nav-icon">◷</span> My results</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-icon">✦</div>
+          <strong>Need a hand?</strong>
+          <p>Make the most of your learning journey.</p>
+          <a href="mailto:support@example.com">Contact support ↗</a>
+        </div>
+        <div class="profile-mini">
+          <div class="avatar">SR</div>
+          <div><strong id="sidebarName">MD Faiz</strong><small>Student account</small></div>
+          <span class="more">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="crumb">Dashboard</strong></div>
+        <div class="topbar-right">
+          <span class="status-dot"></span><span class="online-label">All systems normal</span>
+          <button class="icon-button" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">◐</button>
+          <div class="top-avatar">MF</div>
+        </div>
+      </header>
+
+      <section class="view active" id="dashboardView">
+        <div class="welcome-row">
+          <div><p class="eyebrow"> </p><h1><span id="welcomeName">MD Faiz</span> <span class="wave">✦</span></h1><p class="muted">Ready to sharpen your knowledge? Your next challenge awaits.</p></div>
+          <button class="primary-button" id="browseBtn">Explore quizzes <span>→</span></button>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Quizzes completed</span><span class="stat-icon purple">▤</span></div><div class="stat-number" id="completedStat">0</div><div class="stat-foot">Keep building your streak</div></article>
+          <article class="stat-card"><div class="stat-top"><span>Average score</span><span class="stat-icon green">↗</span></div><div class="stat-number" id="averageStat">—<small>%</small></div><div class="stat-foot">Across your completed quizzes</div></article>
+          <article class="stat-card"><div class="stat-top"><span>Best score</span><span class="stat-icon orange">★</span></div><div class="stat-number" id="bestStat">—<small>%</small></div><div class="stat-foot">Your personal best</div></article>
+        </div>
+
+        <div class="section-heading"><div><p class="eyebrow">PICK UP WHERE YOU LEFT OFF</p><h2>Featured quizzes</h2></div><button class="text-button" data-goto="quizzes">View all quizzes →</button></div>
+        <div class="quiz-grid" id="featuredGrid"></div>
+
+        <div class="bottom-grid">
+          <section class="panel activity-panel"><div class="panel-heading"><div><h3>Recent activity</h3><p>Your latest learning sessions</p></div><span class="subtle-tag">LAST 5</span></div><div id="recentActivity" class="activity-list"></div></section>
+          <section class="panel tip-panel"><div class="tip-art">✦</div><p class="eyebrow">DAILY LEARNING TIP</p><h3>Small steps add up.</h3><p>Consistency beats cramming. Try one short quiz every day to keep your knowledge fresh.</p><button class="text-button" id="tipBtn">Got it <span>→</span></button></section>
+        </div>
+      </section>
+
+      <section class="view" id="quizzesView">
+        <div class="page-heading"><div><p class="eyebrow">THE QUIZ LIBRARY</p><h1>Explore quizzes</h1><p class="muted">Find your next challenge and put your knowledge to the test.</p></div></div>
+        <div class="filter-row"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search quizzes, topics..."></label><select id="categoryFilter" aria-label="Filter by category"><option value="All">All categories</option></select><select id="difficultyFilter" aria-label="Filter by difficulty"><option value="All">All levels</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></div>
+        <div class="result-count" id="resultCount"></div><div class="quiz-grid" id="allQuizGrid"></div>
+      </section>
+
+      <section class="view" id="resultsView">
+        <div class="page-heading"><div><p class="eyebrow">YOUR PROGRESS</p><h1>My results</h1><p class="muted">Review your performance and keep improving.</p></div><button class="outline-button" id="clearResultsBtn">Clear history</button></div>
+        <div class="panel results-panel"><div class="panel-heading"><div><h3>Quiz history</h3><p>Your completed attempts are saved on this device.</p></div></div><div id="resultsTable"></div></div>
+      </section>
+
+      <section class="view" id="quizView">
+        <div class="quiz-topline"><button class="back-button" id="exitQuiz">← Back to quizzes</button><span class="live-pill"><i></i> LIVE ASSESSMENT</span></div>
+        <div class="quiz-layout">
+          <div class="quiz-main panel">
+            <div class="quiz-title-row"><div><span class="category-chip" id="quizCategory"></span><h1 id="quizTitle"></h1><p class="muted" id="quizMeta"></p></div><div class="timer-box"><span>TIME LEFT</span><strong id="timer">10:00</strong></div></div>
+            <div class="progress-meta"><span id="questionCounter">Question 1 of 10</span><span id="progressPercent">10%</span></div><div class="progress-track"><div id="progressBar"></div></div>
+            <div class="question-area"><div class="question-label" id="questionLabel">QUESTION 01</div><h2 id="questionText"></h2><div class="options-list" id="optionsList"></div></div>
+            <div class="quiz-controls"><button class="outline-button" id="prevQuestion">← Previous</button><div class="control-right"><button class="text-button" id="clearAnswer">Clear answer</button><button class="primary-button" id="nextQuestion">Next question →</button><button class="submit-button hidden" id="submitQuiz">Submit quiz ✓</button></div></div>
+          </div>
+          <aside class="question-sidebar panel"><h3>Question navigator</h3><p class="muted small">Select a number to jump to a question.</p><div class="question-numbers" id="questionNumbers"></div><div class="legend"><span><i class="legend-current"></i> Current</span><span><i class="legend-answered"></i> Answered</span><span><i class="legend-empty"></i> Unanswered</span></div><div class="sidebar-progress"><div><span>Completion</span><strong id="answeredCount">0 / 10</strong></div><div class="progress-track"><div id="answeredBar"></div></div></div></aside>
+        </div>
+      </section>
+
+      <section class="view" id="resultView">
+        <div class="result-wrap panel"><div class="result-icon" id="resultIcon">✦</div><p class="eyebrow">ASSESSMENT COMPLETED</p><h1 id="resultHeading">Great effort!</h1><p class="muted" id="resultSubheading"></p><div class="score-ring" id="scoreRing"><div><strong id="finalScore">0%</strong><span>YOUR SCORE</span></div></div><div class="result-stats"><div><strong id="correctCount">0</strong><span>Correct</span></div><div><strong id="wrongCount">0</strong><span>Incorrect</span></div><div><strong id="skippedCount">0</strong><span>Skipped</span></div></div><div class="result-actions"><button class="primary-button" id="reviewBtn">Review answers</button><button class="outline-button" id="resultHomeBtn">Back to dashboard</button></div><div class="review-area hidden" id="reviewArea"></div></div>
+      </section>
+
+      <footer class="footer"><span>© 2026 QuizFlow. Learn something new every day.</span><span>Built for curious minds <b>✦</b></span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop hidden" id="confirmModal"><div class="confirm-modal"><div class="modal-symbol">?</div><h3>Submit your quiz?</h3><p id="confirmText">You still have unanswered questions. Are you sure you want to finish?</p><div class="modal-actions"><button class="outline-button" id="cancelSubmit">Keep working</button><button class="primary-button" id="confirmSubmit">Submit now</button></div></div></div>
+  <script src="script.js"></script>
+</body>
+</html>
